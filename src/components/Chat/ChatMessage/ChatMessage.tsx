@@ -46,6 +46,8 @@ const ChatMessage: React.FC = () => {
 
   const chatConversationRef = useRef<HTMLDivElement>(null);
 
+  const prevScrollPositionRef = useRef<number>(0); // Store the previous scroll position
+
   const loadMoreMessages = useCallback(() => {
     if (currentMessages && loadedMessages < currentMessages.messages.length) {
       setLoadingMore(true);
@@ -54,20 +56,28 @@ const ChatMessage: React.FC = () => {
       setTimeout(() => {
         setLoadedMessages((prevLoaded) => prevLoaded + MESSAGES_TO_LOAD);
         setLoadingMore(false);
+
+        // After updating, restore the previous scroll position
+        chatConversationRef.current!.scrollTop = prevScrollPositionRef.current;
       }, API_CALL_DELAY);
     }
   }, [currentMessages, loadedMessages]);
 
   const handleWaypointEnter = () => {
     if (!loadingMore) {
+      prevScrollPositionRef.current = chatConversationRef.current!.scrollTop; // Store the previous scroll position
       loadMoreMessages();
     }
   };
 
   useEffect(() => {
-    // Ensure the scrollbar is at the bottom after rendering new messages
     if (chatConversationRef.current) {
-      chatConversationRef.current.scrollTop = chatConversationRef.current.scrollHeight;
+      // Calculate the new scroll position after rendering new messages
+      const newScrollPosition =
+        chatConversationRef.current.scrollHeight - prevScrollPositionRef.current;
+
+      // Update the scroll position
+      chatConversationRef.current.scrollTop = newScrollPosition;
     }
   }, [currentMessages]);
 
