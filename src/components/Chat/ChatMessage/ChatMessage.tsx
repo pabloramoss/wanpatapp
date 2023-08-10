@@ -13,6 +13,9 @@ import ChatMessageText from './ChatMessageText';
 import ChatMessageInput from './ChatMessageInput';
 import { Container } from './ChatMessage.styles';
 
+const MESSAGES_TO_LOAD = 10;
+const API_CALL_DELAY = 1000;
+
 const ChatMessage: React.FC = () => {
   const [loadedMessages, setLoadedMessages] = useState(15);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -49,9 +52,9 @@ const ChatMessage: React.FC = () => {
 
       // Simulate an API call to load more messages
       setTimeout(() => {
-        setLoadedMessages((prevLoaded) => prevLoaded + 10);
+        setLoadedMessages((prevLoaded) => prevLoaded + MESSAGES_TO_LOAD);
         setLoadingMore(false);
-      }, 1000);
+      }, API_CALL_DELAY);
     }
   }, [currentMessages, loadedMessages]);
 
