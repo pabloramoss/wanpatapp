@@ -2,7 +2,8 @@
   {
     "id": "1",
     "userName": "Gaspi",
-    "userEmail": "user1@example.com",
+    "userEmail": "user3@example.com",
+    "userAvatar": "https://pbs.twimg.com/profile_images/1235393786488016896/SoEGipqw_400x400.jpg",
     "messages": [
       {
         "id": "1",
@@ -189,7 +190,8 @@
   {
     "id": "2",
     "userName": "Coscu",
-    "userEmail": "user2@example.com",
+    "userEmail": "user4@example.com",
+    "userAvatar": "https://pbs.twimg.com/profile_images/1424156843526574080/xqqDgd6B_400x400.jpg",
     "messages": [
       {
         "id": "1",
@@ -208,7 +210,8 @@
   {
     "id": "3",
     "userName": "Momo",
-    "userEmail": "user3@example.com",
+    "userEmail": "user5@example.com",
+    "userAvatar": "https://pbs.twimg.com/profile_images/1687277534595981312/bfZ-KjP1_400x400.jpg",
     "messages": [
       { "id": "1", "text": "Hi!", "timestamp": 1678659040000, "owner": false },
       {

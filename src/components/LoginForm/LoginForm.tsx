@@ -56,6 +56,10 @@ const Form: React.FC = () => {
     }
   };
 
+  const handleGoToRegister = () => {
+    navigate(ROUTES.register);
+  };
+
   return (
     <Container>
       <Typography gutterBottom component="h1" variant="h4">
@@ -92,6 +96,16 @@ const Form: React.FC = () => {
         />
         <Button fullWidth color="primary" type="submit" variant="contained">
           Login
+        </Button>
+        <p>or</p>
+        <Button
+          fullWidth
+          color="primary"
+          type="submit"
+          variant="outlined"
+          onClick={handleGoToRegister}
+        >
+          Register
         </Button>
       </form>
       <Snackbar

@@ -7,6 +7,12 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin: 2em 0;
+  padding: 2em;
+
+  p {
+    text-align: center;
+    margin: 0;
+  }
 
   .login__form {
     display: grid;

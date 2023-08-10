@@ -11,4 +11,7 @@ const TIME_FORMATTERS = {
   dayMonthHoursMinutesFormat: 'DD/MM hh[:]mm a',
 };
 
-export { ROUTES, TIME_FORMATTERS };
+const AVATAR_DEFAULT_URL =
+  'https://pbs.twimg.com/profile_images/1598184292563107840/kQQvHce0_400x400.jpg';
+
+export { ROUTES, TIME_FORMATTERS, AVATAR_DEFAULT_URL };

@@ -17,7 +17,7 @@ const ChatSidebarCard: React.FC<Props> = ({ conversation }) => {
     <Link to={ROUTES.conversationId(conversation.id)}>
       <Container>
         <div className="sidebar-card__unread-messages">
-          <Avatar alt={conversation.userName} />
+          <Avatar alt={conversation.userName} src={conversation.userAvatar} />
           <div className="sidebar-card__content">
             <p className="sidebar-card__username">{conversation.userName}</p>
             <p className="sidebar-card__message">{lastMessage?.text}</p>

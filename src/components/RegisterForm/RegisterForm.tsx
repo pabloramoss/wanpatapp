@@ -3,7 +3,7 @@ import { TextField, Button, Typography } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 
-import { ROUTES } from '../../lib/constants';
+import { AVATAR_DEFAULT_URL, ROUTES } from '../../lib/constants';
 import { getUsers } from '../../lib/register/selectors';
 import { existUser } from '../../lib/register/utils';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
@@ -29,7 +29,7 @@ const RegisterForm: React.FC = () => {
       return;
     }
     // if not, add user to redux store
-    dispatch(addUser({ id: uuidv4(), name, email, password, avatar: '' }));
+    dispatch(addUser({ id: uuidv4(), name, email, password, avatar: AVATAR_DEFAULT_URL }));
     navigate(ROUTES.login);
   };
 
