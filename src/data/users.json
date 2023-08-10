@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1",
+    "name": "Gaspi",
+    "email": "user1@example.com",
+    "password": "password1",
+    "avatar": "https://assets.adnradio.cl/2022/04/Serie-Oso-Ted-925x470.png"
+  },
+  {
+    "id": "2",
+    "name": "Coscu",
+    "email": "user2@example.com",
+    "password": "password2",
+    "avatar": "https://assets.adnradio.cl/2022/04/Serie-Oso-Ted-925x470.png"
+  }
+]
