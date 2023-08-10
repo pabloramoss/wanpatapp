@@ -1,15 +1,17 @@
-import ChatMessageInput from "./ChatMessageInput";
-import { useParams } from "react-router-dom";
-import ChatMessageText from "./ChatMessageText";
-import { addMessage } from "../../../redux/slices/conversationsSlice";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import React, { useEffect, useCallback, useRef, useState } from "react";
-import { Message } from "../../../types";
+import { useParams } from 'react-router-dom';
+import React, { useEffect, useCallback, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Waypoint } from "react-waypoint";
-import { CircularProgress } from "@mui/material";
-import { createTimestampInSeconds } from "../../../lib/conversations/utils";
-import { Container } from "./ChatMessage.styles";
+import { Waypoint } from 'react-waypoint';
+import { CircularProgress } from '@mui/material';
+
+import { Message } from '../../../types';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { addMessage } from '../../../redux/slices/conversationsSlice';
+import { createTimestampInSeconds } from '../../../lib/conversations/utils';
+
+import ChatMessageText from './ChatMessageText';
+import ChatMessageInput from './ChatMessageInput';
+import { Container } from './ChatMessage.styles';
 
 const ChatMessage: React.FC = () => {
   const [loadedMessages, setLoadedMessages] = useState(15);
@@ -17,7 +19,9 @@ const ChatMessage: React.FC = () => {
   const [message, setMessage] = useState('');
   const { conversationId } = useParams();
 
-  const currentMessages = useAppSelector((state) => state.conversations.data.find((conversation) => conversation.id === conversationId!));
+  const currentMessages = useAppSelector((state) =>
+    state.conversations.data.find((conversation) => conversation.id === conversationId!),
+  );
 
   const dispatch = useAppDispatch();
 
@@ -29,9 +33,10 @@ const ChatMessage: React.FC = () => {
       timestamp: createTimestampInSeconds(),
       owner: true,
     };
+
     setMessage('');
 
-    dispatch(addMessage({ conversationId: conversationId!, message: newMessage}));
+    dispatch(addMessage({ conversationId: conversationId!, message: newMessage }));
   };
 
   const handleChange = (text: string) => setMessage(text);
@@ -65,10 +70,8 @@ const ChatMessage: React.FC = () => {
 
   return (
     <Container>
-      <div className="chat-message__conversation" ref={chatConversationRef}>
-        {
-          loadingMore && <CircularProgress className="chat-message__loader" />
-        }
+      <div ref={chatConversationRef} className="chat-message__conversation">
+        {loadingMore && <CircularProgress className="chat-message__loader" />}
         <Waypoint onEnter={handleWaypointEnter} />
         {currentMessages ? (
           currentMessages.messages
@@ -85,15 +88,9 @@ const ChatMessage: React.FC = () => {
           <p className="chat-message__unselected-message">Select a message</p>
         )}
       </div>
-      {
-        currentMessages && (
-          <ChatMessageInput
-            message={message}
-            onChange={handleChange}
-            onSubmit={handleSubmit}
-          />
-        )
-      }
+      {currentMessages && (
+        <ChatMessageInput message={message} onChange={handleChange} onSubmit={handleSubmit} />
+      )}
     </Container>
   );
 };

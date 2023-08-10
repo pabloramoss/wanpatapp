@@ -1,17 +1,18 @@
-import styled from "styled-components";
-import { SIZES, COLORS } from "../../../../lib/styles";
+import styled from 'styled-components';
+
+import { SIZES, COLORS } from '../../../../lib/styles';
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: .5rem;
+  padding: 0.5rem;
   height: ${SIZES.chatSidebarCardHeight};
 
   .sidebar-card__unread-messages {
     display: flex;
     align-items: center;
-    gap: .5rem;
+    gap: 0.5rem;
   }
 
   .sidebar-card__content {
@@ -22,7 +23,7 @@ export const Container = styled.div`
     margin: 0;
     font-weight: bold;
   }
-  
+
   .sidebar-card__message {
     white-space: nowrap;
     overflow: hidden;
@@ -32,11 +33,11 @@ export const Container = styled.div`
   }
 
   .sidebard-card__timestamp {
-    font-size: .8rem;
+    font-size: 0.8rem;
     margin: 0;
   }
 
   &:hover {
     background-color: ${COLORS.lightestGrey};
   }
-`
+`;

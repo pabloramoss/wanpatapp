@@ -1,13 +1,15 @@
-import { useState } from "react";
-import { TextField, Button, Typography } from "@mui/material";
+import { useState } from 'react';
+import { TextField, Button, Typography } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
-import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../lib/constants";
-import { getUsers } from "../../lib/register/selectors";
-import { existUser } from "../../lib/register/utils";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { addUser } from "../../redux/slices/usersSlice";
-import { Container } from "./RegisterForm.styles";
+import { useNavigate } from 'react-router-dom';
+
+import { ROUTES } from '../../lib/constants';
+import { getUsers } from '../../lib/register/selectors';
+import { existUser } from '../../lib/register/utils';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { addUser } from '../../redux/slices/usersSlice';
+
+import { Container } from './RegisterForm.styles';
 
 const RegisterForm: React.FC = () => {
   const [name, setName] = useState('');
@@ -23,50 +25,56 @@ const RegisterForm: React.FC = () => {
     // check if user exists
     if (existUser(email, users)) {
       alert('User already exists');
-      
+
       return;
     }
     // if not, add user to redux store
     dispatch(addUser({ id: uuidv4(), name, email, password, avatar: '' }));
     navigate(ROUTES.login);
-  }
+  };
 
   const handleGoToLogin = () => {
     navigate(ROUTES.login);
   };
-  
+
   return (
     <Container>
       <Typography variant="h4">Register</Typography>
       <form className="register__form" onSubmit={handleSubmit}>
         <TextField
-          label="Name"
-          variant="outlined"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
           required
+          label="Name"
+          value={name}
+          variant="outlined"
+          onChange={(e) => setName(e.target.value)}
         />
         <TextField
+          required
           label="Email"
-          variant="outlined"
           type="email"
           value={email}
+          variant="outlined"
           onChange={(e) => setEmail(e.target.value)}
-          required
         />
         <TextField
+          required
           label="Password"
-          variant="outlined"
           type="password"
           value={password}
+          variant="outlined"
           onChange={(e) => setPassword(e.target.value)}
-          required
         />
-        <Button type="submit" variant="contained" color="primary">
+        <Button color="primary" type="submit" variant="contained">
           Register
         </Button>
         <p>or</p>
-        <Button fullWidth onClick={handleGoToLogin} type="submit" variant="outlined" color="primary">
+        <Button
+          fullWidth
+          color="primary"
+          type="submit"
+          variant="outlined"
+          onClick={handleGoToLogin}
+        >
           Login
         </Button>
       </form>

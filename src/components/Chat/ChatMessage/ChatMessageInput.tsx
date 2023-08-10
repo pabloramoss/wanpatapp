@@ -11,22 +11,27 @@ interface Props {
 
 const ChatMessageInput: React.FC<Props> = ({ message, onChange, onSubmit }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => onChange(event.target.value);
-  
+
   return (
     <Paper
       component="form"
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        width: '100%',
+        borderRight: '1px solid lightgrey',
+      }}
       onSubmit={onSubmit}
-      sx={{ display: 'flex', alignItems: 'center', width: "100%", borderRight: "1px solid lightgrey" }}
     >
-      <IconButton sx={{ p: '10px' }} aria-label="menu">
+      <IconButton aria-label="menu" sx={{ p: '10px' }}>
         <InsertEmoticonIcon />
       </IconButton>
       <InputBase
+        inputProps={{ 'aria-label': 'write a message' }}
+        placeholder="Write a message..."
+        sx={{ ml: 1, flex: 1 }}
         value={message}
         onChange={handleChange}
-        sx={{ ml: 1, flex: 1 }}
-        placeholder="Write a message..."
-        inputProps={{ 'aria-label': 'write a message' }}
       />
     </Paper>
   );

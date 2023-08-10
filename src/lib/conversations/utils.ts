@@ -1,12 +1,17 @@
-import { Conversation, Message } from "../../types";
-import dayjs, { Dayjs } from "dayjs"
-import { TIME_FORMATTERS } from "../constants";
-import _ from "lodash";
+import dayjs, { Dayjs } from 'dayjs';
+import _ from 'lodash';
+
+import { Conversation, Message } from '../../types';
+import { TIME_FORMATTERS } from '../constants';
 
 export const getLastMessage = (messages: Message[]) => _.last(messages);
 
 export const compareByTimestampAsc = (conversations: Conversation[]) => {
-  return _.orderBy(conversations, [(conversation) => _.last(conversation.messages)?.timestamp || 0], ["asc"]);
+  return _.orderBy(
+    conversations,
+    [(conversation) => _.last(conversation.messages)?.timestamp || 0],
+    ['asc'],
+  );
 };
 
 const getIsToday = (timestampDayJS: Dayjs) => {
@@ -18,7 +23,7 @@ const getIsToday = (timestampDayJS: Dayjs) => {
 
 export const getFormattedDate = (timestamp: number) => {
   const timestampDayJS = dayjs.unix(timestamp);
-  const isToday = getIsToday(timestampDayJS)
+  const isToday = getIsToday(timestampDayJS);
 
   if (isToday) {
     return timestampDayJS.format(TIME_FORMATTERS.hoursMinutesFormat);

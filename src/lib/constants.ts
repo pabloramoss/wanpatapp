@@ -11,7 +11,4 @@ const TIME_FORMATTERS = {
   dayMonthHoursMinutesFormat: 'DD/MM hh[:]mm a',
 };
 
-export {
-  ROUTES,
-  TIME_FORMATTERS,
-}
+export { ROUTES, TIME_FORMATTERS };

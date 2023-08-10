@@ -1,11 +1,13 @@
-import { Avatar, IconButton } from "@mui/material";
-import { getUser } from "../../../lib/auth/selectors"
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks"
+import { Avatar, IconButton } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { userLogout } from "../../../redux/slices/authSlice";
-import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../../lib/constants";
-import { Container } from "./ChatHeader.styles";
+import { useNavigate } from 'react-router-dom';
+
+import { getUser } from '../../../lib/auth/selectors';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { userLogout } from '../../../redux/slices/authSlice';
+import { ROUTES } from '../../../lib/constants';
+
+import { Container } from './ChatHeader.styles';
 
 const ChatHeader: React.FC = () => {
   const user = useAppSelector(getUser);
@@ -15,7 +17,7 @@ const ChatHeader: React.FC = () => {
 
   const handleLogout = () => {
     dispatch(userLogout());
-    navigate(ROUTES.login)
+    navigate(ROUTES.login);
   };
 
   return (
@@ -28,7 +30,7 @@ const ChatHeader: React.FC = () => {
         <LogoutIcon />
       </IconButton>
     </Container>
-  )
-}
+  );
+};
 
-export default ChatHeader
+export default ChatHeader;

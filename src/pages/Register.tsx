@@ -1,8 +1,7 @@
-import RegisterForm from "../components/RegisterForm";
+import RegisterForm from '../components/RegisterForm';
 
 const Register: React.FC = () => {
-
-  return <RegisterForm />
+  return <RegisterForm />;
 };
 
 export default Register;

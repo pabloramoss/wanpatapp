@@ -1,9 +1,11 @@
-import { Avatar, Divider } from "@mui/material"
-import { Conversation } from "../../../../types";
-import { getFormattedDate, getLastMessage } from "../../../../lib/conversations/utils";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../../../lib/constants";
-import { Container } from "./ChatSidebarCard.styles";
+import { Avatar, Divider } from '@mui/material';
+import { Link } from 'react-router-dom';
+
+import { Conversation } from '../../../../types';
+import { getFormattedDate, getLastMessage } from '../../../../lib/conversations/utils';
+import { ROUTES } from '../../../../lib/constants';
+
+import { Container } from './ChatSidebarCard.styles';
 
 interface Props {
   conversation: Conversation;
@@ -25,7 +27,7 @@ const ChatSidebarCard: React.FC<Props> = ({ conversation }) => {
       </Container>
       <Divider variant="inset" />
     </Link>
-  )
-}
+  );
+};
 
-export default ChatSidebarCard
+export default ChatSidebarCard;
