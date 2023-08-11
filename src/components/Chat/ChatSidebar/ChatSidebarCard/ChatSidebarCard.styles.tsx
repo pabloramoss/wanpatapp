@@ -35,6 +35,7 @@ export const Container = styled.div`
   .sidebard-card__timestamp {
     font-size: 0.8rem;
     margin: 0;
+    flex-shrink: 0;
   }
 
   &:hover {

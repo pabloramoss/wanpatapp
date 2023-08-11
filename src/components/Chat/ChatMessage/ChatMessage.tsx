@@ -22,7 +22,7 @@ const ChatMessage: React.FC = () => {
   const [message, setMessage] = useState('');
   const { conversationId } = useParams();
 
-  const currentMessages = useAppSelector((state) =>
+  const currentConversation = useAppSelector((state) =>
     state.conversations.data.find((conversation) => conversation.id === conversationId!),
   );
 
@@ -49,7 +49,7 @@ const ChatMessage: React.FC = () => {
   const prevScrollPositionRef = useRef<number>(0); // Store the previous scroll position
 
   const loadMoreMessages = useCallback(() => {
-    if (currentMessages && loadedMessages < currentMessages.messages.length) {
+    if (currentConversation && loadedMessages < currentConversation.messages.length) {
       setLoadingMore(true);
 
       // Simulate an API call to load more messages
@@ -61,7 +61,7 @@ const ChatMessage: React.FC = () => {
         chatConversationRef.current!.scrollTop = prevScrollPositionRef.current;
       }, API_CALL_DELAY);
     }
-  }, [currentMessages, loadedMessages]);
+  }, [currentConversation, loadedMessages]);
 
   const handleWaypointEnter = () => {
     if (!loadingMore) {
@@ -79,15 +79,20 @@ const ChatMessage: React.FC = () => {
       // Update the scroll position
       chatConversationRef.current.scrollTop = newScrollPosition;
     }
-  }, [currentMessages]);
+  }, [currentConversation]);
 
   return (
     <Container>
+      {currentConversation && (
+        <div className="chat-message__header">
+          <p>{currentConversation.userName}</p>
+        </div>
+      )}
       <div ref={chatConversationRef} className="chat-message__conversation">
         {loadingMore && <CircularProgress className="chat-message__loader" />}
         <Waypoint onEnter={handleWaypointEnter} />
-        {currentMessages ? (
-          currentMessages.messages
+        {currentConversation ? (
+          currentConversation.messages
             .slice(-loadedMessages)
             .map((message) => (
               <ChatMessageText
@@ -101,7 +106,7 @@ const ChatMessage: React.FC = () => {
           <p className="chat-message__unselected-message">Select a message</p>
         )}
       </div>
-      {currentMessages && (
+      {currentConversation && (
         <ChatMessageInput message={message} onChange={handleChange} onSubmit={handleSubmit} />
       )}
     </Container>

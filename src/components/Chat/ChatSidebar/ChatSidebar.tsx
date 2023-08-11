@@ -1,14 +1,15 @@
-import { Conversation } from '../../../types';
-import { compareByTimestampAsc } from '../../../lib/conversations/utils';
+import _ from 'lodash';
+
+import { sortConversationsByLastMessage } from '../../../lib/conversations/utils';
+import { getConversations } from '../../../lib/conversations/selectors';
+import { useAppSelector } from '../../../redux/hooks';
 
 import ChatSidebarCard from './ChatSidebarCard';
 import { Container } from './ChatSidebar.styles';
 
-interface Props {
-  conversations: Conversation[];
-}
-const Sidebar: React.FC<Props> = ({ conversations }) => {
-  const sortedConversations = compareByTimestampAsc(conversations);
+const Sidebar: React.FC = () => {
+  const userConversations = useAppSelector(getConversations);
+  const sortedConversations = sortConversationsByLastMessage(userConversations);
 
   return (
     <Container>

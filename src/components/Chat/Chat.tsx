@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { setConversations } from '../../redux/slices/conversationsSlice';
 import messages from '../../data/messages.json';
 import { getUser } from '../../lib/auth/selectors';
-import { getConversations } from '../../lib/conversations/selectors';
 import { Conversation } from '../../types';
 
 import ChatHeader from './ChatHeader';
@@ -24,13 +23,11 @@ const Chat: React.FC = () => {
     dispatch(setConversations(initialMessages));
   }, [dispatch, user]);
 
-  const userConversations = useAppSelector(getConversations);
-
   return (
     <Container>
       <div className="chat__sidebar">
         <ChatHeader />
-        <ChatSidebar conversations={userConversations} />
+        <ChatSidebar />
       </div>
       <ChatMessage />
     </Container>

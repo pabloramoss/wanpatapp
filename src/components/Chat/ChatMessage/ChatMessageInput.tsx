@@ -23,7 +23,7 @@ const ChatMessageInput: React.FC<Props> = ({ message, onChange, onSubmit }) => {
       }}
       onSubmit={onSubmit}
     >
-      <IconButton aria-label="menu" sx={{ p: '10px' }}>
+      <IconButton aria-label="emoji" sx={{ p: '10px' }}>
         <InsertEmoticonIcon />
       </IconButton>
       <InputBase

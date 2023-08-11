@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { COLORS, SIZES } from '../../../lib/styles';
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -13,7 +15,16 @@ export const Container = styled.div`
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: 1em;
+    margin-top: 5em;
+  }
+
+  .chat-message__header {
+    height: ${SIZES.chatHeaderHeight};
+    text-align: center;
+    margin: 0;
+    font-weight: bold;
+    background-color: ${COLORS.lightGrey};
+    border-left: 1px solid lightgrey;
   }
 
   .chat-message__conversation {
@@ -24,7 +35,7 @@ export const Container = styled.div`
     overflow-y: auto;
     height: 100%;
     border: 1px solid lightgrey;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: white;
   }
 
   .chat-message__unselected-message {

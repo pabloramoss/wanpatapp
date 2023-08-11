@@ -6,11 +6,11 @@ import { TIME_FORMATTERS } from '../constants';
 
 export const getLastMessage = (messages: Message[]) => _.last(messages);
 
-export const compareByTimestampAsc = (conversations: Conversation[]) => {
+export const sortConversationsByLastMessage = (conversations: Conversation[]): Conversation[] => {
   return _.orderBy(
     conversations,
-    [(conversation) => _.last(conversation.messages)?.timestamp || 0],
-    ['asc'],
+    (conversation) => _.get(_.last(conversation.messages), 'timestamp', 0),
+    'desc',
   );
 };
 
