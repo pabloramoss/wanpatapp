@@ -23,5 +23,6 @@ export const Container = styled.div<ContainerProps>`
     color: ${COLORS.darkGrey};
     text-align: right;
     align-self: flex-end;
+    flex-shrink: 0;
   }
 `;
