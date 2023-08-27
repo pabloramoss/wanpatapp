@@ -9,7 +9,7 @@ const COLORS = {
 
 const SIZES = {
   chatHeaderHeight: '50px',
-  chatSidebarWidth: '236px',
+  chatSidebarWidth: '350px',
   chatSidebarCardHeight: '60px',
   chatMessageHeight: '62px',
 };
