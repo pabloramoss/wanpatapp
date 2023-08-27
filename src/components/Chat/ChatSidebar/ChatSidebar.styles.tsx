@@ -6,6 +6,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${COLORS.lightestGrey};
-  width: 350px;
+  width: ${SIZES.chatSidebarWidth};
   height: calc(100vh - ${SIZES.chatHeaderHeight});
 `;
