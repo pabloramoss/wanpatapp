@@ -36,7 +36,7 @@ const ChatMessagePredefined: React.FC<Props> = ({ onClose, onSelectMessage }) =>
               alignItems: 'center',
             }}
           >
-            <CardHeader title="Respuestas predefinidas" />
+            <CardHeader title="Predefined responses" />
             <IconButton onClick={onClose}>
               <CloseIcon />
             </IconButton>
