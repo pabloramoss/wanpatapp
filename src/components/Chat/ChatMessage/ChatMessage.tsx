@@ -28,7 +28,9 @@ const ChatMessage: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (
+    event: React.FormEvent<HTMLFormElement> | React.KeyboardEvent<HTMLTextAreaElement>,
+  ) => {
     event.preventDefault();
     const newMessage: Message = {
       id: uuidv4(),

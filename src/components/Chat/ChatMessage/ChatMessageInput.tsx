@@ -1,5 +1,4 @@
 import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import ArticleIcon from '@mui/icons-material/Article';
@@ -18,7 +17,9 @@ import ChatMessagePredefined from './ChatMessagePredefined';
 interface Props {
   message: string;
   onChange: (event: string) => void;
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit: (
+    event: React.FormEvent<HTMLFormElement> | React.KeyboardEvent<HTMLTextAreaElement>,
+  ) => void;
 }
 
 const ChatMessageInput: React.FC<Props> = ({ message, onChange, onSubmit }) => {
@@ -43,6 +44,14 @@ const ChatMessageInput: React.FC<Props> = ({ message, onChange, onSubmit }) => {
     setResponsesOpen(false);
   };
 
+  // Prevent the user from do a line break when pressing enter and submit the form instead
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      onSubmit(event);
+    }
+  };
+
   return (
     <Paper
       component="form"
@@ -63,7 +72,9 @@ const ChatMessageInput: React.FC<Props> = ({ message, onChange, onSubmit }) => {
         maxRows={5}
         minRows={1}
         placeholder="Write a message"
+        value={message}
         onChange={handleChange}
+        onKeyDown={handleKeyPress}
       />
       <IconButton
         aria-label="send message"
