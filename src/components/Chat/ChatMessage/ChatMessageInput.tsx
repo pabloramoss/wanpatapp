@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { useParams } from 'react-router-dom';
+import { TextareaAutosize } from '@mui/material';
 
 import { createTimestampInSeconds } from '../../../lib/conversations/utils';
 import { addMessage } from '../../../redux/slices/conversationsSlice';
@@ -27,7 +28,8 @@ const ChatMessageInput: React.FC<Props> = ({ message, onChange, onSubmit }) => {
 
   const { conversationId } = useParams();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => onChange(event.target.value);
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) =>
+    onChange(event.target.value);
   const handleCloseMessagesPredefined = () => setResponsesOpen(false);
   const handleSelectMessagePredefined = (predefinedMessage: string) => {
     const newMessage: Message = {
@@ -46,7 +48,7 @@ const ChatMessageInput: React.FC<Props> = ({ message, onChange, onSubmit }) => {
       component="form"
       sx={{
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-end',
         width: '100%',
         borderRight: '1px solid lightgrey',
       }}
@@ -55,11 +57,12 @@ const ChatMessageInput: React.FC<Props> = ({ message, onChange, onSubmit }) => {
       <IconButton aria-label="emoji" sx={{ p: '10px' }}>
         <InsertEmoticonIcon />
       </IconButton>
-      <InputBase
-        inputProps={{ 'aria-label': 'write a message' }}
-        placeholder="Write a message..."
-        sx={{ ml: 1, flex: 1 }}
-        value={message}
+      <TextareaAutosize
+        aria-label="write a message"
+        className="chat-message__input"
+        maxRows={5}
+        minRows={1}
+        placeholder="Write a message"
         onChange={handleChange}
       />
       <IconButton
