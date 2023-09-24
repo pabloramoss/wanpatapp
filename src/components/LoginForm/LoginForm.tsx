@@ -66,34 +66,41 @@ const Form: React.FC = () => {
         Login
       </Typography>
       <form className="login__form" onSubmit={handleSubmit}>
-        <TextField
-          fullWidth
-          required
-          error={emailError}
-          label="Email"
-          margin="normal"
-          type="email"
-          value={email}
-          variant="outlined"
-          onChange={(e) => {
-            setEmail(e.target.value);
-            setEmailError(false);
-          }}
-        />
-        <TextField
-          fullWidth
-          required
-          error={passwordError}
-          label="Password"
-          margin="normal"
-          type="password"
-          value={password}
-          variant="outlined"
-          onChange={(e) => {
-            setPassword(e.target.value);
-            setPasswordError(false);
-          }}
-        />
+        <div>
+          <TextField
+            fullWidth
+            required
+            error={emailError}
+            label="Email"
+            margin="normal"
+            type="email"
+            value={email}
+            variant="outlined"
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setEmailError(false);
+            }}
+          />
+          <p className="login__info">user1@example.com</p>
+        </div>
+        <div>
+          <TextField
+            fullWidth
+            required
+            error={passwordError}
+            label="Password"
+            margin="normal"
+            type="password"
+            value={password}
+            variant="outlined"
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setPasswordError(false);
+            }}
+          />
+          <p className="login__info">password1</p>
+        </div>
+
         <Button fullWidth color="primary" type="submit" variant="contained">
           Login
         </Button>

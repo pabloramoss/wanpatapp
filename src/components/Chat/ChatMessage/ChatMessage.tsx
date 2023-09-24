@@ -7,7 +7,7 @@ import { CircularProgress } from '@mui/material';
 import { Message } from '../../../types';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { addMessage } from '../../../redux/slices/conversationsSlice';
-import { createTimestampInSeconds } from '../../../lib/conversations/utils';
+import { createTimestampInSeconds, sendMessageToTelegram } from '../../../lib/conversations/utils';
 
 import ChatMessageText from './ChatMessageText';
 import ChatMessageInput from './ChatMessageInput';
@@ -28,7 +28,9 @@ const ChatMessage: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (
+    event: React.FormEvent<HTMLFormElement> | React.KeyboardEvent<HTMLTextAreaElement>,
+  ) => {
     event.preventDefault();
     const newMessage: Message = {
       id: uuidv4(),
@@ -40,6 +42,7 @@ const ChatMessage: React.FC = () => {
     setMessage('');
 
     dispatch(addMessage({ conversationId: conversationId!, message: newMessage }));
+    sendMessageToTelegram(message);
   };
 
   const handleChange = (text: string) => setMessage(text);

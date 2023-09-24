@@ -42,4 +42,19 @@ export const Container = styled.div`
     text-align: center;
     color: lightgrey;
   }
+
+  .chat-message__input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-top: 1px solid lightgrey;
+    padding: 0.5em;
+    background-color: white;
+    resize: none;
+    border: none;
+    margin: 10px 0;
+    &:focus {
+      outline: none;
+    }
+  }
 `;
