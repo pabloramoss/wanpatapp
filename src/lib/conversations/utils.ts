@@ -1,8 +1,9 @@
 import dayjs, { Dayjs } from 'dayjs';
 import _ from 'lodash';
+import axios from 'axios';
 
 import { Conversation, Message } from '../../types';
-import { TIME_FORMATTERS } from '../constants';
+import { TELEGRAM, TIME_FORMATTERS } from '../constants';
 
 export const getLastMessage = (messages: Message[]) => _.last(messages);
 
@@ -33,3 +34,16 @@ export const getFormattedDate = (timestamp: number) => {
 };
 
 export const createTimestampInSeconds = () => dayjs().unix();
+
+export const sendMessageToTelegram = async (text: string) => {
+  const botToken = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
+  const chatId = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+
+  if (!botToken || !chatId) {
+    return;
+  }
+
+  const url = TELEGRAM.messageUrl({ botToken, chatId, text });
+
+  await axios.post(url);
+};

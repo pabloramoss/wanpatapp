@@ -9,6 +9,11 @@ export const Container = styled.div`
   margin: 2em 0;
   padding: 2em;
 
+  .login__info {
+    color: lightgray;
+    font-size: 0.8em;
+  }
+
   p {
     text-align: center;
     margin: 0;
